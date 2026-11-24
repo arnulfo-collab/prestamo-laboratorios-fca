@@ -34,9 +34,9 @@ export function Inicio({ api, usuario }: { api: Api; usuario: Usuario }) {
     docente:
       "Ya puedes apartar, cancelar a tiempo y registrar tu asistencia. Si no registras el check-in dentro de la tolerancia, el laboratorio se libera solo para otro docente.",
     administrador:
-      "Ya operan el panel de solicitudes, el calendario general, los bloqueos por mantenimiento, el control de asistencia y la configuración de las reglas. En el Sprint 4 llegan las notificaciones y los reportes.",
+      "Desde el menú resuelves solicitudes, consultas el calendario general, registras bloqueos por mantenimiento, das seguimiento a la asistencia, ajustas las reglas de préstamo y consultas los reportes de uso.",
     coordinacion:
-      "Ya puedes consultar el calendario general y la asistencia por docente. En el Sprint 4 llega el dashboard con los indicadores de aprovechamiento.",
+      "Desde el menú consultas el calendario general, la asistencia por docente y los reportes de uso con los indicadores de aprovechamiento, exportables a CSV.",
   };
 
   return (
@@ -55,7 +55,7 @@ export function Inicio({ api, usuario }: { api: Api; usuario: Usuario }) {
 
       <div className="seccion">
         <Aviso tipo="neutro">
-          <strong>Alcance de este incremento.</strong> {siguiente[usuario.rol]}
+          <strong>Lo que puedes hacer.</strong> {siguiente[usuario.rol]}
         </Aviso>
       </div>
 
@@ -63,8 +63,8 @@ export function Inicio({ api, usuario }: { api: Api; usuario: Usuario }) {
         <h2>Reglas de préstamo vigentes</h2>
         <Tarjeta>
           <p style={{ margin: "0 0 12px", color: "var(--tinta-suave)", fontSize: 14.5 }}>
-            El sistema aplica estas reglas al registrar cada solicitud. La pantalla para editarlas se
-            construye en el Sprint 3; la coordinación de la FCA define los valores definitivos.
+            El sistema aplica estas reglas al registrar cada solicitud. El encargado de laboratorios
+            las ajusta desde Reglas de préstamo, con los valores que define la coordinación de la FCA.
           </p>
           <Tabla columnas={["Clave", "Parámetro", "Valor vigente"]}>
             {parametros.map((p) => (
