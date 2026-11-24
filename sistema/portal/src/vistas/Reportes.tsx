@@ -223,7 +223,14 @@ function GraficaLaboratorios({ filas }: { filas: DemandaLaboratorio[] }) {
             <g key={f.laboratorio_id}>
               <text x={0} y={y + 14} className="eje">{f.clave}</text>
               {total === 0 ? (
-                <text x={anchoEtiqueta} y={y + 14} className="eje suave">sin solicitudes</text>
+                // La barra solo mide horario ya usado o perdido. Un laboratorio con
+                // solicitudes pendientes o a futuro aún no tiene qué dibujar, pero
+                // decir "sin solicitudes" contradiría a la tabla de abajo.
+                <text x={anchoEtiqueta} y={y + 14} className="eje suave">
+                  {f.solicitudes === 0
+                    ? "sin solicitudes"
+                    : `${f.solicitudes} ${f.solicitudes === 1 ? "solicitud" : "solicitudes"} · aún sin horario usado ni desperdiciado`}
+                </text>
               ) : (
                 <>
                   <rect x={anchoEtiqueta} y={y} width={Math.max(usado, 2)} height={20}
