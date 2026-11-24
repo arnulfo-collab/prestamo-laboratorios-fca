@@ -1,0 +1,39 @@
+# Plano de despliegue · Sistema de préstamo de laboratorios de cómputo
+# Facultad de Ciencias Administrativas · UABC Mexicali
+#
+# Un solo servicio web sirve la API y el portal compilado desde el mismo
+# origen, que es como el sistema ya estaba escrito: así la cookie de sesión
+# viaja sin configurar CORS y sin depender de cookies de terceros.
+#
+# Los dos procesos de 60 segundos NO viven aquí: corren en pg_cron, dentro de
+# la propia base. Ver bd/11_pg_cron.sql.
+#
+# rootDir supone que el repositorio tiene la carpeta `sistema` en su raíz.
+# Si subiste el contenido de `sistema` directamente a la raíz, borra esa línea.
+
+services:
+  - type: web
+    name: prestamo-laboratorios
+    runtime: node
+    plan: free
+    region: oregon
+    rootDir: sistema
+    buildCommand: cd portal && npm ci && npm run build && cd ../servidor && npm ci && npm run build
+    startCommand: cd servidor && node dist/index.js
+    healthCheckPath: /api/estado
+    autoDeployTrigger: commit
+    envVars:
+      # Cadena de conexión de Supabase.
+      # OBLIGATORIO: usa el "Session pooler", puerto 5432, NO el de 6543.
+      # El servidor fija search_path como parámetro de arranque de la conexión
+      # y el pooler en modo transacción descarta ese estado de sesión.
+      - key: DATABASE_URL
+        sync: false
+      - key: BD_SSL
+        value: "true"
+      - key: NODE_ENV
+        value: production
+      - key: HORAS_DE_SESION
+        value: "8"
+      - key: NODE_VERSION
+        value: "22"

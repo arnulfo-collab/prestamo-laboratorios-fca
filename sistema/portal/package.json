@@ -1,0 +1,25 @@
+{
+  "name": "prestamo-laboratorios-portal",
+  "version": "2.0.0",
+  "description": "Portal del sistema de préstamo de laboratorios de cómputo de la FCA, UABC Mexicali",
+  "author": "Arnulfo Vásquez Romero",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react": "4.3.4",
+    "typescript": "5.7.2",
+    "vite": "5.4.11"
+  }
+}

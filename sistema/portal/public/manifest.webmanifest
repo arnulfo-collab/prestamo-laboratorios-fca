@@ -1,0 +1,19 @@
+{
+  "name": "Préstamo de Laboratorios · FCA UABC",
+  "short_name": "Laboratorios FCA",
+  "description": "Apartado de laboratorios de cómputo de la Facultad de Ciencias Administrativas de la UABC, campus Mexicali.",
+  "lang": "es-MX",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4f6f5",
+  "theme_color": "#00533e",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "./icono-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icono-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

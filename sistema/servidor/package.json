@@ -1,0 +1,29 @@
+{
+  "name": "prestamo-laboratorios-servidor",
+  "version": "2.0.0",
+  "description": "API del sistema de préstamo de laboratorios de cómputo de la FCA, UABC Mexicali",
+  "author": "Arnulfo Vásquez Romero",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "bd:crear": "psql \"$DATABASE_URL\" -v ON_ERROR_STOP=1 -f ../bd/01_esquema.sql -f ../bd/02_datos_iniciales.sql -f ../bd/04_sprint2.sql",
+    "bd:probar": "psql \"$DATABASE_URL\" -f ../bd/03_pruebas.sql -f ../bd/05_pruebas_sprint2.sql"
+  },
+  "dependencies": {
+    "cookie-parser": "1.4.7",
+    "dotenv": "16.4.7",
+    "express": "4.21.2",
+    "pg": "8.13.1"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "1.4.8",
+    "@types/express": "4.17.21",
+    "@types/node": "22.10.2",
+    "@types/pg": "8.11.10",
+    "tsx": "4.19.2",
+    "typescript": "5.7.2"
+  }
+}

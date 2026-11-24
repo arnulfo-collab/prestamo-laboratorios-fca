@@ -1,0 +1,183 @@
+// Modelo entidad-relación · Sistema de Préstamo de Laboratorios de Cómputo
+// Entregable E-03 · Tarea T-08 · Sprint 1 · Arnulfo Vásquez Romero
+// Generado con Graphviz. Los campos mostrados son las llaves y los atributos
+// que participan en las reglas del negocio; el detalle completo de cada campo
+// está en el diccionario de datos.
+
+digraph modelo_er {
+    rankdir = TB;
+    splines = ortho;
+    nodesep = 0.45;
+    ranksep = 0.45;
+    bgcolor = "white";
+    fontname = "Helvetica";
+
+    node [shape = plaintext, fontname = "Helvetica", fontsize = 15];
+    edge [color = "#5a6472", penwidth = 1.6, arrowsize = 1.0,
+          fontname = "Helvetica", fontsize = 13, fontcolor = "#3c4654"];
+
+    // ---------------- Catálogos ----------------
+    rol [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#eda100" colspan="2"><font color="white" point-size="17"><b>rol</b></font></td></tr>
+        <tr><td align="left"><b>id</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">clave</td><td align="left">UQ</td></tr>
+        <tr><td align="left">nombre</td><td align="left"></td></tr>
+      </table>>];
+
+    estatus [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#eda100" colspan="2"><font color="white" point-size="17"><b>estatus_reservacion</b></font></td></tr>
+        <tr><td align="left"><b>id</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">clave</td><td align="left">UQ</td></tr>
+        <tr><td align="left">ocupa_horario</td><td align="left"></td></tr>
+        <tr><td align="left">cuenta_falta</td><td align="left"></td></tr>
+      </table>>];
+
+    parametro [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#eda100" colspan="2"><font color="white" point-size="17"><b>parametro</b></font></td></tr>
+        <tr><td align="left"><b>clave</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">valor</td><td align="left"></td></tr>
+        <tr><td align="left">actualizado_por</td><td align="left">FK</td></tr>
+      </table>>];
+
+    // ---------------- Acceso ----------------
+    usuario [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#2a78d6" colspan="2"><font color="white" point-size="17"><b>usuario</b></font></td></tr>
+        <tr><td align="left"><b>id</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">numero_empleado</td><td align="left">UQ</td></tr>
+        <tr><td align="left">correo</td><td align="left">UQ</td></tr>
+        <tr><td align="left">contrasena_hash</td><td align="left"></td></tr>
+        <tr><td align="left">rol_id</td><td align="left">FK</td></tr>
+        <tr><td align="left">activo</td><td align="left"></td></tr>
+      </table>>];
+
+    sesion [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#2a78d6" colspan="2"><font color="white" point-size="17"><b>sesion</b></font></td></tr>
+        <tr><td align="left"><b>id</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">usuario_id</td><td align="left">FK</td></tr>
+        <tr><td align="left">expira_en</td><td align="left"></td></tr>
+        <tr><td align="left">cerrada_en</td><td align="left"></td></tr>
+      </table>>];
+
+    intento [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#2a78d6" colspan="2"><font color="white" point-size="17"><b>intento_acceso</b></font></td></tr>
+        <tr><td align="left"><b>id</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">correo</td><td align="left"></td></tr>
+        <tr><td align="left">exitoso</td><td align="left"></td></tr>
+      </table>>];
+
+    // ---------------- Laboratorios ----------------
+    laboratorio [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#1baf7a" colspan="2"><font color="white" point-size="17"><b>laboratorio</b></font></td></tr>
+        <tr><td align="left"><b>id</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">clave</td><td align="left">UQ</td></tr>
+        <tr><td align="left">capacidad</td><td align="left"></td></tr>
+        <tr><td align="left">ubicacion</td><td align="left"></td></tr>
+        <tr><td align="left">activo</td><td align="left"></td></tr>
+      </table>>];
+
+    horario [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#1baf7a" colspan="2"><font color="white" point-size="17"><b>horario_laboratorio</b></font></td></tr>
+        <tr><td align="left"><b>id</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">laboratorio_id</td><td align="left">FK</td></tr>
+        <tr><td align="left">dia_semana</td><td align="left"></td></tr>
+        <tr><td align="left">hora_inicio / hora_fin</td><td align="left">UQ</td></tr>
+      </table>>];
+
+    bloqueo [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#1baf7a" colspan="2"><font color="white" point-size="17"><b>bloqueo_laboratorio</b></font></td></tr>
+        <tr><td align="left"><b>id</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">laboratorio_id</td><td align="left">FK</td></tr>
+        <tr><td align="left">fecha_inicio / fecha_fin</td><td align="left"></td></tr>
+        <tr><td align="left">registrado_por</td><td align="left">FK</td></tr>
+      </table>>];
+
+    // ---------------- Reservaciones ----------------
+    reservacion [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#eb6834" colspan="2"><font color="white" point-size="17"><b>reservacion</b></font></td></tr>
+        <tr><td align="left"><b>id</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">folio</td><td align="left">UQ</td></tr>
+        <tr><td align="left">usuario_id</td><td align="left">FK</td></tr>
+        <tr><td align="left">laboratorio_id</td><td align="left">FK</td></tr>
+        <tr><td align="left">fecha_uso</td><td align="left"></td></tr>
+        <tr><td align="left">hora_inicio / hora_fin</td><td align="left"></td></tr>
+        <tr><td align="left">estatus_id</td><td align="left">FK</td></tr>
+        <tr><td align="left">resuelta_por</td><td align="left">FK</td></tr>
+        <tr><td align="left">motivo_rechazo</td><td align="left"></td></tr>
+      </table>>];
+
+    historial [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#eb6834" colspan="2"><font color="white" point-size="17"><b>historial_reservacion</b></font></td></tr>
+        <tr><td align="left"><b>id</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">reservacion_id</td><td align="left">FK</td></tr>
+        <tr><td align="left">estatus_anterior</td><td align="left">FK</td></tr>
+        <tr><td align="left">estatus_nuevo</td><td align="left">FK</td></tr>
+      </table>>];
+
+    asistencia [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#eb6834" colspan="2"><font color="white" point-size="17"><b>asistencia</b></font></td></tr>
+        <tr><td align="left"><b>id</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">reservacion_id</td><td align="left">FK · UQ</td></tr>
+        <tr><td align="left">minutos_retraso</td><td align="left"></td></tr>
+      </table>>];
+
+    inasistencia [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#eb6834" colspan="2"><font color="white" point-size="17"><b>inasistencia</b></font></td></tr>
+        <tr><td align="left"><b>id</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">reservacion_id</td><td align="left">FK · UQ</td></tr>
+        <tr><td align="left">usuario_id</td><td align="left">FK</td></tr>
+        <tr><td align="left">horas_perdidas</td><td align="left"></td></tr>
+      </table>>];
+
+    notificacion [label = <
+      <table border="0" cellborder="1" cellspacing="0" cellpadding="7" bgcolor="white" color="#9aa4b2">
+        <tr><td bgcolor="#eb6834" colspan="2"><font color="white" point-size="17"><b>notificacion</b></font></td></tr>
+        <tr><td align="left"><b>id</b></td><td align="left">PK</td></tr>
+        <tr><td align="left">usuario_id</td><td align="left">FK</td></tr>
+        <tr><td align="left">reservacion_id</td><td align="left">FK</td></tr>
+        <tr><td align="left">tipo</td><td align="left"></td></tr>
+      </table>>];
+
+    // ---------------- Relaciones ----------------
+    // arrowtail=none + arrowhead=crow  =  uno a muchos
+    edge [dir = both, arrowtail = none, arrowhead = crow];
+
+    rol          -> usuario      [xlabel = "tiene"];
+    usuario      -> sesion       [xlabel = "abre"];
+    usuario      -> reservacion  [xlabel = "solicita"];
+    usuario      -> parametro    [xlabel = "configura"];
+    usuario      -> bloqueo      [xlabel = "registra"];
+    usuario      -> inasistencia [xlabel = "acumula"];
+    usuario      -> notificacion [xlabel = "recibe"];
+    laboratorio  -> horario      [xlabel = "oferta"];
+    laboratorio  -> bloqueo      [xlabel = "se bloquea"];
+    laboratorio  -> reservacion  [xlabel = "se reserva"];
+    estatus      -> reservacion  [xlabel = "clasifica"];
+    estatus      -> historial    [xlabel = "registra"];
+    reservacion  -> historial    [xlabel = "traza"];
+    reservacion  -> notificacion [xlabel = "genera"];
+
+    // Uno a uno
+    edge [arrowhead = noneteetee];
+    reservacion  -> asistencia   [xlabel = "check-in"];
+    reservacion  -> inasistencia [xlabel = "falta"];
+
+    // La bitácora de intentos de acceso no guarda llave foránea al usuario:
+    // registra también los correos que no existen en el sistema.
+    edge [style = dashed, arrowhead = crow, color = "#9aa4b2"];
+    usuario -> intento [xlabel = "intenta\n(sin llave foránea)"];
+
+    { rank = same; rol; estatus; }
+}

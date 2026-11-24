@@ -1,0 +1,21 @@
+# Credenciales. Nunca al control de versiones.
+.env
+.env.local
+*.env
+!.env.ejemplo
+
+# Dependencias y productos de compilación
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Respaldos de la base
+*.dump
+*.sql.gz
