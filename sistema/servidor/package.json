@@ -9,8 +9,8 @@
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "bd:crear": "psql \"$DATABASE_URL\" -v ON_ERROR_STOP=1 -f ../bd/01_esquema.sql -f ../bd/02_datos_iniciales.sql -f ../bd/04_sprint2.sql",
-    "bd:probar": "psql \"$DATABASE_URL\" -f ../bd/03_pruebas.sql -f ../bd/05_pruebas_sprint2.sql"
+    "bd:crear": "psql \"$DATABASE_URL\" -v ON_ERROR_STOP=1 -f ../bd/01_esquema.sql -f ../bd/02_datos_iniciales.sql -f ../bd/04_sprint2.sql -f ../bd/06_sprint3.sql -f ../bd/08_sprint4.sql",
+    "bd:probar": "psql \"$DATABASE_URL\" -f ../bd/03_pruebas.sql -f ../bd/05_pruebas_sprint2.sql -f ../bd/07_pruebas_sprint3.sql -f ../bd/09_pruebas_sprint4.sql"
   },
   "dependencies": {
     "cookie-parser": "1.4.7",
