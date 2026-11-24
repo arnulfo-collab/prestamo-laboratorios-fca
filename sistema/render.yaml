@@ -18,7 +18,9 @@ services:
     plan: free
     region: oregon
     rootDir: sistema
-    buildCommand: cd portal && npm ci && npm run build && cd ../servidor && npm ci && npm run build
+    # --include=dev: con NODE_ENV=production npm ci omite las devDependencies,
+    # y ahí viven typescript y vite, que hacen falta para compilar.
+    buildCommand: cd portal && npm ci --include=dev && npm run build && cd ../servidor && npm ci --include=dev && npm run build
     startCommand: cd servidor && node dist/index.js
     healthCheckPath: /api/estado
     autoDeployTrigger: commit
