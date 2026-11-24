@@ -132,12 +132,12 @@ export default function App() {
           restablezca.
         </div>
       )}
-      <div className="cinta-sprint">
-        {api.modo === "demostracion"
-          ? "Modo de demostración · los datos viven en esta pestaña y se reinician al recargar"
-          : "Conectado a la base de datos"}
-        {" · "}Incremento del Sprint 4: avisos, recordatorios y reportes de uso
-      </div>
+      {/* Solo en el modo de demostración, para que no se confunda con el sistema real. */}
+      {api.modo === "demostracion" && (
+        <div className="cinta-sprint">
+          Modo de demostración · los datos viven en esta pestaña y se reinician al recargar
+        </div>
+      )}
 
       <div className="app">
         <aside className="lateral">
@@ -146,10 +146,9 @@ export default function App() {
             <div className="nom">Préstamo de laboratorios</div>
           </div>
           <nav>
-            {permitidas.map((seccion, i) => (
+            {permitidas.map((seccion) => (
               <span key={seccion} style={{ display: "contents" }}>
                 {seccion === "catalogo" && <div className="grupo">Administración</div>}
-                {seccion === "criterios" && i > 0 && <div className="grupo">Sprint 4</div>}
                 <a href={`#${seccion}`} className={vista === seccion ? "activo" : ""}>
                   {ETIQUETAS[seccion]}
                   {seccion === "pendientes" && pendientesPorResolver > 0 && (

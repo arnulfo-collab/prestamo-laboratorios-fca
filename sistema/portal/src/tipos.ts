@@ -220,12 +220,12 @@ export const DIAS = [
 ] as const;
 
 export const SECCIONES_POR_ROL: Record<ClaveRol, string[]> = {
-  docente: ["inicio", "calendario", "mis-solicitudes", "avisos", "laboratorios", "criterios"],
+  docente: ["inicio", "calendario", "mis-solicitudes", "avisos", "laboratorios"],
   administrador: [
     "inicio", "calendario", "pendientes", "agenda", "reportes", "catalogo", "bloqueos",
-    "docentes", "parametros", "usuarios", "laboratorios", "criterios",
+    "docentes", "parametros", "usuarios", "laboratorios",
   ],
-  coordinacion: ["inicio", "agenda", "reportes", "docentes", "laboratorios", "criterios"],
+  coordinacion: ["inicio", "agenda", "reportes", "docentes", "laboratorios"],
 };
 
 // ---------------------------------------------------------------------
